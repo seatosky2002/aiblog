@@ -1,3 +1,4 @@
+import ReactMarkdown from 'react-markdown';
 import './BlogPost.css';
 
 function BlogPost({ blog, onClose }) {
@@ -40,7 +41,7 @@ function BlogPost({ blog, onClose }) {
       </div>
 
       <div className="blog-post-content">
-        <pre>{blog.content}</pre>
+        <ReactMarkdown>{blog.content}</ReactMarkdown>
       </div>
 
       <div className="blog-post-actions">
