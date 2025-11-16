@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:4000';
 
-// axios 인스턴스 생성 (나중에 interceptor 추가 가능)
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
