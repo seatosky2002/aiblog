@@ -21,3 +21,10 @@
 - 요청 헤더:
   Authorization: Bearer <GITHUB_TOKEN>
   User-Agent: github-activity-blog
+
+
+
+4. google studio api 연결
+  .env에 추가
+  블로그 생성하기
+  복사 기능
