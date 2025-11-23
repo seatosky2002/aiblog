@@ -1,7 +1,7 @@
 import BlogPost from './BlogPost';
 import './ActivityDetail.css';
 
-function ActivityDetail({ activity, onGenerateBlog, isGenerating, generatedBlog, onCloseBlog }) {
+function ActivityDetail({ activity, onGenerateBlog, isGenerating, generatedBlog, onCloseBlog, onSaveBlog }) {
   if (!activity && !generatedBlog) {
     return (
       <div className="activity-detail-empty">
@@ -16,7 +16,7 @@ function ActivityDetail({ activity, onGenerateBlog, isGenerating, generatedBlog,
 
   // 블로그가 생성되면 블로그를 보여줌
   if (generatedBlog) {
-    return <BlogPost blog={generatedBlog} onClose={onCloseBlog} />;
+    return <BlogPost blog={generatedBlog} onClose={onCloseBlog} onSave={onSaveBlog} />;
   }
 
   // 선택된 활동의 상세 정보 표시

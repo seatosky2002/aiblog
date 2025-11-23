@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import './BlogPost.css';
 
-function BlogPost({ blog, onClose }) {
+function BlogPost({ blog, onClose, onSave }) {
+  const [isSaved, setIsSaved] = useState(false);
+
   if (!blog) {
     return (
       <div className="blog-post-empty">
@@ -23,6 +26,11 @@ function BlogPost({ blog, onClose }) {
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
+  };
+
+  const handleSave = () => {
+    onSave();
+    setIsSaved(true);
   };
 
   return (
@@ -50,6 +58,13 @@ function BlogPost({ blog, onClose }) {
         </button>
         <button className="btn-primary" onClick={handleDownload}>
           💾 다운로드
+        </button>
+        <button
+          className={isSaved ? "btn-saved" : "btn-save"}
+          onClick={handleSave}
+          disabled={isSaved}
+        >
+          {isSaved ? '✅ 저장됨' : '💾 저장하기'}
         </button>
       </div>
     </div>

@@ -40,20 +40,6 @@ function Home() {
       const blog = await blogApi.generate(activity);
       setGeneratedBlog(blog); // 생성된 블로그 글 저장
 
-      // localStorage에 자동 저장
-      const savedBlogData = {
-        title: blog.title,
-        content: blog.content,
-        createdAt: blog.createdAt,
-        activityType: activity.type,
-        repoInfo: repoInfo, // 어떤 레포지토리에서 생성했는지 저장
-      };
-
-      saveBlog(savedBlogData);
-
-      // 저장 성공 알림 (콘솔)
-      console.log('✅ 블로그가 localStorage에 저장되었습니다!');
-
     } catch (err) {
       console.error('Error generating blog:', err);
       // 서버에서 보낸 메시지가 있으면 표시, 아니면 기본 메시지 표시
@@ -61,6 +47,22 @@ function Home() {
     } finally {
       setIsGenerating(false); // 로딩 종료
     }
+  };
+
+  // 블로그 저장 함수
+  const handleSaveBlog = () => {
+    if (!generatedBlog || !selectedActivity) return;
+
+    const savedBlogData = {
+      title: generatedBlog.title,
+      content: generatedBlog.content,
+      createdAt: generatedBlog.createdAt,
+      activityType: selectedActivity.type,
+      repoInfo: repoInfo,
+    };
+
+    saveBlog(savedBlogData);
+    alert('블로그가 저장되었습니다!');
   };
 
   // 블로그 글 화면에서 "닫기" 버튼 눌렀을 때
@@ -109,6 +111,7 @@ function Home() {
             isGenerating={isGenerating}         // 블로그 생성 중?
             generatedBlog={generatedBlog}       // 생성된 블로그 내용
             onCloseBlog={handleCloseBlog}       // 블로그 창 닫기
+            onSaveBlog={handleSaveBlog}         // 블로그 저장 함수
           />
         </div>
       )}
